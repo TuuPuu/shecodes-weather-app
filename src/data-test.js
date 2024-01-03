@@ -12,17 +12,32 @@ let cities = [
 let chosenCity = "";
 let chosenTemperature = "";
 let chosenFaren = "";
-let chosenHumidity = ";";
-let userCity = prompt("Enter your city");
+let chosenHumidity = "";
+let userCity = "";
+let userInput = prompt("Enter your city");
+
+
+// FIX USER INPUT
+let userCityLowerCase = userInput.trim().toLowerCase();
+
+
+// CAPITALISE USER INPUT
+let firstLetter = userCityLowerCase.charAt(0).toUpperCase();
+let restOfWord = userCityLowerCase.slice(1);
+userCity = firstLetter + restOfWord;
+
+console.log(userCity);
 
 // DECIDE OUTPUT FOR USER
-if (userCity === cities[0].city) {
-  chosenCity = cities[0].city;
-  chosenTemperature = cities[0].temperature;
-  chosenHumidity = cities[0].humidity;
-  alert(
-    `It is currently ${chosenTemperature}°C (${chosenFaren}°F) in ${chosenCity} and the humidity is ${chosenHumidity}%`
-  );
-} else {
-  alert(`City not found`);
-}
+
+// if (userCity === cities[0].city) {
+//   chosenCity = cities[0].city;
+//   chosenTemperature = cities[0].temperature;
+//   chosenFaren = cities[0].faren;
+//   chosenHumidity = cities[0].humidity;
+//   alert(
+//     `It is currently ${chosenTemperature}°C (${chosenFaren}°F) in ${chosenCity} and the humidity is ${chosenHumidity}%`
+//   );
+// } else {
+//   alert(`City not found`);
+// }
