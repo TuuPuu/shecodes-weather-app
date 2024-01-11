@@ -65,13 +65,32 @@ function addTimeOnPage() {
 addTimeOnPage();
 
 // CHANGING CITY BASED ON INPUT
+// function changeCity(){}
 let searchForm = document.querySelector("#search-form");
 
 // function to access user input
 function getInput(event) {
   event.preventDefault();
+
   let userInput = document.querySelector("#user-input");
 
-  alert(userInput.value);
+  let cityDisplayed = document.querySelector("#city");
+
+  // function to capitalise accessed user input
+  function capitaliseLetter() {
+    let submittedUserInput = userInput.value;
+    const trimmedInput = submittedUserInput.trim();
+    const firstLetter = trimmedInput.charAt(0);
+    const firstLetterCap = firstLetter.toUpperCase();
+    const remainingLetters = trimmedInput.slice(1);
+    const updatedRemainingLetters = remainingLetters.toLowerCase();
+    const updatedTrimmedInput = firstLetterCap + updatedRemainingLetters;
+
+    return updatedTrimmedInput;
+  }
+  let updatedUserInput = capitaliseLetter();
+
+  // push the user input into the HTML
+  cityDisplayed.innerHTML = `${updatedUserInput}`;
 }
 searchForm.addEventListener("submit", getInput);
