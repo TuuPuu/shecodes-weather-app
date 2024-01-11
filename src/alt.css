@@ -74,7 +74,12 @@ input {
   max-width: 60%;
   border-radius: 8px;
   filter: drop-shadow(10px 10px 8px rgba(255, 105, 180, 0.2));
+  overflow: auto;
 }
+
+/* .current-weather {
+  overflow: auto;
+} */
 
 .current-weather p,
 footer p {

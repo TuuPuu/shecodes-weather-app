@@ -45,8 +45,26 @@ function addTimeOnPage() {
       "22",
       "23",
     ];
+
+    let listOfMinutes = [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+    ];
     let currentHour = listOfHours[newDate.getHours()];
     let currentMinute = newDate.getMinutes();
+
+    // code to fix minute print error
+    if (currentMinute <= 9) {
+      currentMinute = listOfMinutes[currentMinute];
+    }
 
     // here is the current time
     let currentTime = `${currentHour}:${currentMinute}`;
@@ -65,32 +83,34 @@ function addTimeOnPage() {
 addTimeOnPage();
 
 // CHANGING CITY BASED ON INPUT
-// function changeCity(){}
-let searchForm = document.querySelector("#search-form");
+function changeCity() {
+  let searchForm = document.querySelector("#search-form");
 
-// function to access user input
-function getInput(event) {
-  event.preventDefault();
+  // function to access user input
+  function getInput(event) {
+    event.preventDefault();
 
-  let userInput = document.querySelector("#user-input");
+    let userInput = document.querySelector("#user-input");
 
-  let cityDisplayed = document.querySelector("#city");
+    let cityDisplayed = document.querySelector("#city");
 
-  // function to capitalise accessed user input
-  function capitaliseLetter() {
-    let submittedUserInput = userInput.value;
-    const trimmedInput = submittedUserInput.trim();
-    const firstLetter = trimmedInput.charAt(0);
-    const firstLetterCap = firstLetter.toUpperCase();
-    const remainingLetters = trimmedInput.slice(1);
-    const updatedRemainingLetters = remainingLetters.toLowerCase();
-    const updatedTrimmedInput = firstLetterCap + updatedRemainingLetters;
+    // function to capitalise accessed user input
+    function capitaliseLetter() {
+      let submittedUserInput = userInput.value;
+      const trimmedInput = submittedUserInput.trim();
+      const firstLetter = trimmedInput.charAt(0);
+      const firstLetterCap = firstLetter.toUpperCase();
+      const remainingLetters = trimmedInput.slice(1);
+      const updatedRemainingLetters = remainingLetters.toLowerCase();
+      const updatedTrimmedInput = firstLetterCap + updatedRemainingLetters;
 
-    return updatedTrimmedInput;
+      return updatedTrimmedInput;
+    }
+    let updatedUserInput = capitaliseLetter();
+
+    // push the user input into the HTML
+    cityDisplayed.innerHTML = `${updatedUserInput}`;
   }
-  let updatedUserInput = capitaliseLetter();
-
-  // push the user input into the HTML
-  cityDisplayed.innerHTML = `${updatedUserInput}`;
+  searchForm.addEventListener("submit", getInput);
 }
-searchForm.addEventListener("submit", getInput);
+changeCity();
