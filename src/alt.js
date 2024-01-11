@@ -1,5 +1,6 @@
 // ADDING TIME INTO CODE
 function addTimeOnPage() {
+  // function to get the time and date data
   function getDateAndTime() {
     let newDate = new Date();
 
@@ -57,7 +58,20 @@ function addTimeOnPage() {
   let fetchedDate = getDateAndTime();
 
   // ________________________________________________________________
+  // code to edit HTML
   let currentDate = document.querySelector("#current-date");
   currentDate.innerHTML = `${fetchedDate}`;
 }
 addTimeOnPage();
+
+// CHANGING CITY BASED ON INPUT
+let searchForm = document.querySelector("#search-form");
+
+// function to access user input
+function getInput(event) {
+  event.preventDefault();
+  let userInput = document.querySelector("#user-input");
+
+  alert(userInput.value);
+}
+searchForm.addEventListener("submit", getInput);
