@@ -82,8 +82,49 @@ function addTimeOnPage() {
 }
 addTimeOnPage();
 
-// CHANGING CITY BASED ON INPUT
+// CHANGING CITY AND TEMP BASED ON INPUT (api)
 function changeCity() {
+  let searchForm = document.querySelector("#search-form");
+
+  // function to access user input
+  function getInput(event) {
+    event.preventDefault();
+
+    let userInput = document.querySelector("#user-input");
+
+    let cityDisplayed = document.querySelector("#city");
+
+    // function to capitalise accessed user input
+    function capitaliseLetter() {
+      let submittedUserInput = userInput.value;
+      const trimmedInput = submittedUserInput.trim();
+      const firstLetter = trimmedInput.charAt(0);
+      const firstLetterCap = firstLetter.toUpperCase();
+      const remainingLetters = trimmedInput.slice(1);
+      const updatedRemainingLetters = remainingLetters.toLowerCase();
+      const updatedTrimmedInput = firstLetterCap + updatedRemainingLetters;
+
+      return updatedTrimmedInput;
+    }
+
+    // function to get api temp
+    function displayTemp(response) {
+      console.log(response.data.temperature.current);
+    }
+
+    let updatedUserInput = capitaliseLetter();
+    let apiKey = "f83ea03eaec86b89t28973b8846f30o5";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${updatedUserInput}&key=${apiKey}`;
+
+    // initiate api call
+    axios.get(apiUrl).then(displayTemp);
+  }
+  searchForm.addEventListener("submit", getInput);
+}
+changeCity();
+
+// CHANGING CITY BASED ON INPUT (no longer needed)
+/*function changeCity() {
   let searchForm = document.querySelector("#search-form");
 
   // function to access user input
@@ -113,4 +154,31 @@ function changeCity() {
   }
   searchForm.addEventListener("submit", getInput);
 }
-changeCity();
+changeCity();*/
+
+// (old)API CALL BASED ON USER INPUT & CHANGE CITY BASED ON CALL
+
+// function to access user input
+
+/*function searchInput(event) {
+  event.preventDefault();
+
+  // function to get temp from api call
+  function getTemperature(response) {
+    console.log(response.data);
+  }
+
+  let userInput = document.querySelector("#user-input");
+  let cityDisplayed = document.querySelector("#city");
+  let apiKey = "f83ea03eaec86b89t28973b8846f30o5";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${userInput}&key=${apiKey}`;
+
+  // initiate api call
+  axios.get(apiUrl).then(getTemperature);
+
+  // push the user input into the HTML
+  cityDisplayed.innerHTML = `${userInput}`;
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", searchInput);*/
