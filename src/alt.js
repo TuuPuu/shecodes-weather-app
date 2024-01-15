@@ -1,4 +1,4 @@
-// ADDING TIME INTO CODE
+/* ADDING TIME INTO CODE */
 function addTimeOnPage() {
   // function to get the time and date data
   function getDateAndTime() {
@@ -82,7 +82,7 @@ function addTimeOnPage() {
 }
 addTimeOnPage();
 
-// CHANGING CITY AND TEMP BASED ON INPUT (api)
+/* CHANGING CITY AND TEMP BASED ON INPUT (api)*/
 function changeCity() {
   let searchForm = document.querySelector("#search-form");
 
@@ -90,9 +90,8 @@ function changeCity() {
   function getInput(event) {
     event.preventDefault();
 
+    //  this access the seach bar for event listener
     let userInput = document.querySelector("#user-input");
-
-    let cityDisplayed = document.querySelector("#city");
 
     // function to capitalise accessed user input
     function capitaliseLetter() {
@@ -107,17 +106,23 @@ function changeCity() {
       return updatedTrimmedInput;
     }
 
-    // function to get api temp
-    function displayTemp(response) {
-      console.log(response.data.temperature.current);
+    // function to get api temp and display in DOM
+    function displayTemperature(response) {
+      let fetchedTemperature = Math.round(response.data.temperature.current);
+      let fetchedCity = response.data.city;
+
+      cityDisplayed.innerHTML = fetchedCity;
+      temperatureDisplayed.innerHTML = fetchedTemperature;
     }
 
+    let cityDisplayed = document.querySelector("#city");
+    let temperatureDisplayed = document.querySelector("#city-temperature");
     let updatedUserInput = capitaliseLetter();
     let apiKey = "f83ea03eaec86b89t28973b8846f30o5";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${updatedUserInput}&key=${apiKey}`;
 
     // initiate api call
-    axios.get(apiUrl).then(displayTemp);
+    axios.get(apiUrl).then(displayTemperature);
   }
   searchForm.addEventListener("submit", getInput);
 }
