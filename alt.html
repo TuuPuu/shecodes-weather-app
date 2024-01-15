@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700&display=swap"
       rel="stylesheet"
@@ -42,7 +43,8 @@
             </p>
           </div>
           <div class="main-weather">
-            <span class="icon">☀️</span> 14<span class="degree">°C</span>
+            <span class="icon">☀️</span> <span id="city-temperature">14</span
+            ><span class="degree">°C</span>
           </div>
         </div>
         <hr />
